@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRAILER</title>
+</head>
+<style>
+.go {
+    text-decoration: none;
+    background: orange;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+</style>
+<body>
+    <video width="100%" height="100%" src="{{movies.trailer.url}}" controls>
+    </video>
+    <strong><a class="go" href="{% url 'movies:longvideo' movies.pk %}">Go Film</a></strong>
+</body>
+</html>

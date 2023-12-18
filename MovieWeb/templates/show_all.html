@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>MovieHunter</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- از CDN استفاده کنید -->
+<link rel="stylesheet" href="{% static "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" %}" integrity="sha384-/rvoGHsllWbD0v2GGQsEjVOpkfF4NO4bP2PLn9sNIN9J3ghElEXtLmOz9Il3e2MW" crossorigin="anonymous">
+
+<link rel="stylesheet" href="{% static "css/style.css" %}" type="text/css" media="all" />
+<script type="text/javascript" src="{% static "js/jquery-1.4.2.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/jquery-func.js" %}"></script>
+<!--[if IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
+</head>
+<body>
+<!-- START PAGE SOURCE -->
+<div id="shell">
+  <div id="header">
+    <h1 id="logo"><a href="#">MovieHunter</a></h1>
+    <div class="social"> <span>FOLLOW US ON:</span>
+      <ul>
+        <li><a class="github" href="https://github.com/matinggff" target="_blank">GitHub</a></li>
+        <li><a class="discord" href="https://discord.gg/Slayersssss#8995" target="_blank">discord</a></li>
+        <li><a class="instagram" href="https://instagram.com/sy._.1333" target="_blank">instagram</a></li>
+      </ul>
+    </div>
+    <div id="navigation">
+      <ul>
+        <li><a class="active" href="{% url "movies:home" %}">HOME</a></li>
+      </ul>
+    </div>
+    <div id="sub-navigation">
+      <ul>
+        <li><a href="#">SHOW ALL</a></li>
+      </ul>
+      <div id="search">
+
+        <form action="{% url "movies:search" %}" method="get" accept-charset="utf-8">
+          <label for="search-field">SEARCH</label>
+          <input type="text" name="q" placeholder="Enter search here" id="search-field" class="blink search-field"  />
+          <input type="submit" value="GO!" class="search-button" />
+        </form>
+
+      </div>
+    </div>
+  </div>
+  <div id="main">
+    <div id="content">
+      <div class="box">
+        <div class="head">
+          <h2 id="lasttr">RESULT</h2>
+          <p class="text-right"><a href="#">See all</a></p>
+        </div>
+        {% for movie in movies %}
+        <div class="movie last">
+          <a href="{% url "movies:play" movie.pk %}"><div class="movie-image"> <span class="play"><span class="name">{{movie.name}}</span></span> <img src="{{movie.image.url}}" alt="" /></a> </div>
+          <div class="rating">
+            <p>RATING</p>
+            <h4>` {{movie.rating}} `</h4>
+            <a href="{% url "movies:comment" movie.pk %}"><span class="comments">{{movie.comments.count}}</span></a> </div>
+        </div>
+        {% endfor %}
+        
+        <div class="cl">&nbsp;</div>
+      </div>
+    </div>
+
+    <div class="cl">&nbsp;</div>
+  </div>
+  <div id="footer">
+    <p class="lf">Copyright &copy; 2010 <a href="#">SiteName</a> - All Rights Reserved</p>
+    <p class="rf">Design by <a href="http://chocotemplates.com/">ChocoTemplates.com</a></p>
+    <div style="clear:both;"></div>
+  </div>
+</div>
+<!-- END PAGE SOURCE -->
+</body>
+</html>
